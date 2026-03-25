@@ -38,7 +38,7 @@ export function DonationForm({
           id="charityId"
           name="charityId"
           required
-          className="h-[46px] w-full rounded-2xl bg-[var(--surface-container-high)] px-4 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+          className="h-[46px] w-full rounded-2xl bg-[var(--surface-container-lowest)] px-4 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
         >
           <option value="" disabled>
             Select a charity
@@ -53,7 +53,7 @@ export function DonationForm({
 
       <div>
         <label htmlFor="amount" className="mb-2 block text-sm text-muted">
-          Donation amount ($)
+          Donation amount (₹)
         </label>
         <Input id="amount" name="amount" type="number" min={1} step="0.01" required mono />
       </div>

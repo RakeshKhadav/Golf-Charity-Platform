@@ -23,13 +23,13 @@ export function ScoreRowActions({ scoreId, score, scoreDate }: { scoreId: string
           min={1}
           max={45}
           defaultValue={score}
-          className="h-[42px] rounded-2xl bg-[var(--surface-container-high)] px-3 font-data text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+          className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 font-data text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
         />
         <input
           name="scoreDate"
           type="date"
           defaultValue={scoreDate}
-          className="h-[42px] rounded-2xl bg-[var(--surface-container-high)] px-3 font-data text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+          className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 font-data text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
         />
         <Button type="submit" variant="secondary" disabled={updatePending} className="h-[42px] text-xs">
           {updatePending ? "Saving..." : "Update"}

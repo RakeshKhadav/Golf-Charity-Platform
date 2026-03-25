@@ -45,7 +45,7 @@ export function AddCharityForm() {
           id="description"
           name="description"
           rows={4}
-          className="w-full rounded-2xl bg-[var(--surface-container-high)] px-4 py-3 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+          className="w-full rounded-2xl bg-[var(--surface-container-lowest)] px-4 py-3 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
           placeholder="Describe the charity mission and impact"
         />
       </div>
@@ -55,7 +55,7 @@ export function AddCharityForm() {
           <label htmlFor="logoFile" className="mb-2 block text-sm text-muted">
             Logo Image
           </label>
-          <div className="rounded-2xl border border-[color-mix(in_srgb,var(--outline-variant)_35%,transparent)] bg-[var(--surface-container-high)] px-4 py-4">
+          <div className="rounded-2xl border border-[color-mix(in_srgb,var(--outline-variant)_35%,transparent)] bg-[var(--surface-container-lowest)] px-4 py-4">
             <input
               id="logoFile"
               name="logoFile"
@@ -70,7 +70,7 @@ export function AddCharityForm() {
           <label htmlFor="coverFile" className="mb-2 block text-sm text-muted">
             Cover Image
           </label>
-          <div className="rounded-2xl border border-[color-mix(in_srgb,var(--outline-variant)_35%,transparent)] bg-[var(--surface-container-high)] px-4 py-4">
+          <div className="rounded-2xl border border-[color-mix(in_srgb,var(--outline-variant)_35%,transparent)] bg-[var(--surface-container-lowest)] px-4 py-4">
             <input
               id="coverFile"
               name="coverFile"

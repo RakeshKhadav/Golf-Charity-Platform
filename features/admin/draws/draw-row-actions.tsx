@@ -46,7 +46,7 @@ export function DrawRowActions({
             name="logicMode"
             defaultValue={logicMode}
             disabled={!canConfigure || busy}
-            className="h-[42px] w-full rounded-2xl bg-[var(--surface-container-high)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+            className="h-[42px] w-full rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
           >
             <option value="random">Random</option>
             <option value="weighted">Weighted</option>
@@ -58,7 +58,7 @@ export function DrawRowActions({
             name="weightedSeed"
             defaultValue={weightedSeed ?? ""}
             disabled={!canConfigure || busy}
-            className="h-[42px] w-full rounded-2xl bg-[var(--surface-container-high)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+            className="h-[42px] w-full rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
             placeholder="optional"
           />
         </div>

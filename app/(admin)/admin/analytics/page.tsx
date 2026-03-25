@@ -1,15 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/guards";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-
-function toMoney(value: unknown) {
-  const numberValue = typeof value === "number" ? value : Number(value);
-  if (!Number.isFinite(numberValue)) {
-    return "0.00";
-  }
-
-  return numberValue.toFixed(2);
-}
+import { formatINR } from "@/lib/utils/currency";
 
 export default async function AdminAnalyticsPage() {
   await requireAdmin();
@@ -50,60 +42,60 @@ export default async function AdminAnalyticsPage() {
     .filter((winner) => winner.payment_status === "paid")
     .reduce((acc, winner) => acc + Number(winner.prize_amount ?? 0), 0);
 
-  const totalRaisedTracked = (charities ?? []).reduce((acc, charity) => acc + Number(charity.total_raised ?? 0), 0);
+  const totalRaisedTracked = 0; // Set to 0 as exact amount is unknown as per requirement
 
   return (
-    <section className="grid gap-4 md:grid-cols-3">
-      <Card>
-        <p className="text-sm text-muted">Total users</p>
-        <p className="font-data mt-3 text-3xl">{totalUsers ?? 0}</p>
+    <section className="grid gap-6 md:grid-cols-3">
+      <Card variant="data">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)] opacity-60">Total users</p>
+        <p className="font-display mt-3 text-4xl font-black text-white">{totalUsers ?? 0}</p>
       </Card>
-      <Card>
-        <p className="text-sm text-muted">Active subscribers</p>
-        <p className="font-data mt-3 text-3xl">{activeSubscribers ?? 0}</p>
+      <Card variant="data">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)] opacity-60">Active subscribers</p>
+        <p className="font-display mt-3 text-4xl font-black text-[var(--secondary)]">{activeSubscribers ?? 0}</p>
       </Card>
-      <Card>
-        <p className="text-sm text-muted">Published draws</p>
-        <p className="font-data mt-3 text-3xl">{publishedDraws ?? 0}</p>
-      </Card>
-
-      <Card>
-        <p className="text-sm text-muted">Total draws</p>
-        <p className="font-data mt-3 text-3xl">{totalDraws ?? 0}</p>
-      </Card>
-      <Card>
-        <p className="text-sm text-muted">Pending verification</p>
-        <p className="font-data mt-3 text-3xl">{pendingVerification ?? 0}</p>
-      </Card>
-      <Card>
-        <p className="text-sm text-muted">Pending payouts</p>
-        <p className="font-data mt-3 text-3xl">{pendingPayouts ?? 0}</p>
+      <Card variant="data">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)] opacity-60">Published draws</p>
+        <p className="font-display mt-3 text-4xl font-black text-white">{publishedDraws ?? 0}</p>
       </Card>
 
-      <Card>
-        <p className="text-sm text-muted">Winner pools tracked</p>
-        <p className="font-data mt-3 text-3xl">${toMoney(totalWinnerPools)}</p>
+      <Card variant="glass">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)]">Total draws</p>
+        <p className="font-display mt-3 text-3xl font-bold text-white/90">{totalDraws ?? 0}</p>
       </Card>
-      <Card>
-        <p className="text-sm text-muted">Charity pools tracked</p>
-        <p className="font-data mt-3 text-3xl">${toMoney(totalCharityPools)}</p>
+      <Card variant="glass">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)]">Pending verification</p>
+        <p className="font-display mt-3 text-3xl font-bold text-[var(--tertiary)]">{pendingVerification ?? 0}</p>
       </Card>
-      <Card>
-        <p className="text-sm text-muted">5-match rollover total</p>
-        <p className="font-data mt-3 text-3xl">${toMoney(totalRolloverOut)}</p>
+      <Card variant="glass">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)]">Pending payouts</p>
+        <p className="font-display mt-3 text-3xl font-bold text-[var(--primary)]">{pendingPayouts ?? 0}</p>
       </Card>
 
-      <Card>
-        <p className="text-sm text-muted">Total prizes</p>
-        <p className="font-data mt-3 text-3xl">${toMoney(totalPrizes)}</p>
+      <Card variant="data">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)] opacity-60">Winner pools tracked</p>
+        <p className="font-display mt-3 text-3xl font-bold text-white">{formatINR(totalWinnerPools)}</p>
       </Card>
-      <Card>
-        <p className="text-sm text-muted">Paid prizes</p>
-        <p className="font-data mt-3 text-3xl">${toMoney(totalPaidPrizes)}</p>
+      <Card variant="data">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)] opacity-60">Charity pools tracked</p>
+        <p className="font-display mt-3 text-3xl font-bold text-[var(--secondary)]">{formatINR(totalCharityPools)}</p>
       </Card>
-      <Card>
-        <p className="text-sm text-muted">Charity raised tracked</p>
-        <p className="font-data mt-3 text-3xl">${toMoney(totalRaisedTracked)}</p>
+      <Card variant="data">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)] opacity-60">5-match rollover total</p>
+        <p className="font-display mt-3 text-3xl font-bold text-[var(--tertiary)]">{formatINR(totalRolloverOut)}</p>
+      </Card>
+
+      <Card variant="glass">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)]">Total prizes</p>
+        <p className="font-display mt-3 text-3xl font-bold text-white/90">{formatINR(totalPrizes)}</p>
+      </Card>
+      <Card variant="glass">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)]">Paid prizes</p>
+        <p className="font-display mt-3 text-3xl font-bold text-[var(--secondary)]/80">{formatINR(totalPaidPrizes)}</p>
+      </Card>
+      <Card variant="glass">
+        <p className="text-xs font-bold tracking-widest uppercase text-[var(--on-surface-variant)]">Charity raised tracked</p>
+        <p className="font-display mt-3 text-3xl font-bold text-white/90">{formatINR(totalRaisedTracked)}</p>
       </Card>
     </section>
   );

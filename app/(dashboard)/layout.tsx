@@ -1,11 +1,24 @@
 import type { ReactNode } from "react";
 import { AppHeader } from "@/components/shell/app-header";
+import { requireUser } from "@/lib/auth/guards";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getLatestSubscriptionForUser } from "@/lib/subscriptions/status";
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardLayout({ children }: { children: ReactNode }) {
+  const user = await requireUser();
+  const supabase = await createSupabaseServerClient();
+  const { hasAccess } = await getLatestSubscriptionForUser(supabase, user.id, { 
+    userEmail: user.email, 
+    syncFromProvider: true 
+  });
+
+  const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle();
+  const isAdmin = profile?.role === "admin";
+
   return (
     <>
-      <AppHeader />
-      <main className="mx-auto w-[min(1120px,95%)] flex-1 py-8">{children}</main>
+      <AppHeader isPremium={hasAccess} isAdmin={isAdmin} />
+      <main className="flex-1 pt-28">{children}</main>
     </>
   );
 }

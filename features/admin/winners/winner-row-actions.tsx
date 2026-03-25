@@ -28,7 +28,7 @@ export function WinnerRowActions({
         <select
           name="decision"
           defaultValue={winner.verification_status === "pending" ? "approved" : winner.verification_status}
-          className="h-[42px] rounded-2xl bg-[var(--surface-container-high)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+          className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
         >
           <option value="approved">Approve</option>
           <option value="rejected">Reject</option>
@@ -36,7 +36,7 @@ export function WinnerRowActions({
         <input
           name="notes"
           placeholder="Review notes"
-          className="h-[42px] rounded-2xl bg-[var(--surface-container-high)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+          className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
         />
         <Button type="submit" variant="secondary" disabled={reviewPending} className="h-[42px] text-xs">
           {reviewPending ? "Saving..." : "Save Review"}
@@ -48,7 +48,7 @@ export function WinnerRowActions({
         <input
           name="paymentReference"
           placeholder="Payment reference"
-          className="h-[42px] rounded-2xl bg-[var(--surface-container-high)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+          className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
         />
         <Button
           type="submit"

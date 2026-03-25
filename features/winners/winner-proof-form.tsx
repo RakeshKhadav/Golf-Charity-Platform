@@ -18,7 +18,7 @@ export function WinnerProofForm({ winnerId }: { winnerId: string }) {
 
       <label className="block">
         <span className="mb-2 block text-sm text-muted">Upload Proof (PDF)</span>
-        <div className="rounded-2xl border border-[color-mix(in_srgb,var(--outline-variant)_35%,transparent)] bg-[var(--surface-container-high)] px-4 py-4">
+        <div className="rounded-2xl border border-[color-mix(in_srgb,var(--outline-variant)_35%,transparent)] bg-[var(--surface-container-lowest)] px-4 py-4">
           <input name="proofFile" type="file" accept="application/pdf,.pdf" required className="block w-full text-sm text-on-surface" />
           <p className="mt-2 text-xs text-muted">PDF only. Maximum size: 10MB.</p>
         </div>
