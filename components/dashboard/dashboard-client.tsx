@@ -61,7 +61,7 @@ export function DashboardClient({
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-80px)] overflow-hidden">
+    <div className="relative min-h-screen -mt-28 pt-28 overflow-hidden">
       {/* Background Ambient Glows - Edge to Edge */}
       <div className="absolute top-[-10%] right-[-10%] w-[800px] h-[800px] bg-[var(--primary)]/10 blur-[180px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[10%] left-[-10%] w-[900px] h-[900px] bg-[var(--secondary)]/10 blur-[200px] rounded-full pointer-events-none" />
@@ -347,7 +347,15 @@ export function DashboardClient({
                         </p>
                         <p className="text-xs text-muted mt-1 uppercase tracking-wider">Tier: {w.prize_tier.replace("_", " ")}</p>
                       </div>
-                      <p className="font-data text-2xl font-bold text-[var(--tertiary)]">₹{formatMoney(w.prize_amount)}</p>
+                      <div className="text-right">
+                        <p className="font-data text-sm text-[var(--on-surface-variant)] mb-1">Gross: ₹{formatMoney(w.prize_amount)}</p>
+                        <p className="text-xs text-[var(--primary)] font-bold mb-1">
+                          -{profile?.charity_contribution_percentage ?? 10}% Impact: ₹{formatMoney((Number(w.prize_amount) * (profile?.charity_contribution_percentage ?? 10)) / 100)}
+                        </p>
+                        <p className="font-data text-2xl font-bold text-[var(--tertiary)]">
+                          ₹{formatMoney((Number(w.prize_amount) * (100 - (profile?.charity_contribution_percentage ?? 10))) / 100)}
+                        </p>
+                      </div>
                     </div>
                     
                     <div className="bg-[var(--surface-container-lowest)] rounded-lg p-3 text-xs mb-4 flex justify-between">
