@@ -38,37 +38,37 @@ export default async function AdminScoresPage({
   });
 
   return (
-    <section className="grid gap-4">
-      <Card>
-        <h1 className="font-display text-2xl font-bold tracking-[-0.02em]">Scores</h1>
-        <p className="mt-2 text-sm text-muted">Review and correct user score history with 1-45 guardrails.</p>
+    <section className="grid gap-6">
+      <Card variant="glass">
+        <h1 className="font-display text-2xl font-bold tracking-tight text-white">Scores</h1>
+        <p className="mt-2 text-sm text-[var(--on-surface-variant)] opacity-70">Review and correct user score history with 1-45 guardrails.</p>
 
-        <form className="mt-4 grid gap-2 md:grid-cols-[1fr_auto] md:items-end">
+        <form className="mt-6 flex flex-wrap gap-3 items-center p-4 rounded-2xl bg-white/5 border border-white/5">
           <input
             name="q"
             defaultValue={q ?? ""}
             placeholder="Search by user email or name"
-            className="h-[46px] rounded-2xl bg-[var(--surface-container-high)] px-4 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+            className="flex-1 min-w-[300px] h-[46px] rounded-xl bg-white/5 border border-white/10 px-4 text-sm text-white placeholder:text-white/20 outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-all"
           />
-          <button type="submit" className="h-[46px] rounded-2xl bg-[var(--primary)] px-5 text-sm font-semibold text-white">
+          <button type="submit" className="h-[46px] rounded-xl bg-[var(--primary)] hover:bg-[var(--primary)]/90 px-8 text-sm font-bold text-white transition-all shadow-lg shadow-[var(--primary)]/20 active:scale-95">
             Search
           </button>
         </form>
       </Card>
 
-      <Card>
+      <Card variant="glass">
         {error ? <p className="text-sm text-[var(--error)]">{error.message}</p> : null}
         <div className="space-y-3">
           {filtered.map((score) => {
             const profile = profileById.get(score.user_id);
 
             return (
-              <div key={score.id} className="surface-mid rounded-2xl p-3">
-                <p className="font-semibold text-on-surface">{profile?.email ?? score.user_id}</p>
-                <p className="mt-1 text-xs text-muted">
-                  Stored {new Date(score.created_at).toDateString()} · Current date {new Date(score.score_date).toDateString()}
+              <div key={score.id} className="surface-mid rounded-2xl p-4 border border-white/5 hover:border-white/10 transition-colors">
+                <p className="font-bold text-white tracking-tight">{profile?.email ?? score.user_id}</p>
+                <p className="mt-1 text-xs text-[var(--on-surface-variant)] opacity-60">
+                  Stored {new Date(score.created_at).toDateString()} · Score Date {new Date(score.score_date).toDateString()}
                 </p>
-                <div className="mt-3">
+                <div className="mt-4">
                   <ScoreRowActions scoreId={score.id} score={score.score} scoreDate={score.score_date} />
                 </div>
               </div>

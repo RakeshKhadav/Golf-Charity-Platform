@@ -51,7 +51,7 @@ export function CharityRowActions({
           name="name"
           defaultValue={charity.name}
           placeholder="Name"
-          className="h-[42px] rounded-2xl bg-[var(--surface-container-high)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+          className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
         />
 
         <div className="flex items-center gap-1">
@@ -78,7 +78,7 @@ export function CharityRowActions({
           defaultValue={charity.description ?? ""}
           rows={3}
           placeholder="Description"
-          className="rounded-2xl bg-[var(--surface-container-high)] px-3 py-2 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)] md:col-span-2"
+          className="rounded-2xl bg-[var(--surface-container-lowest)] px-3 py-2 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)] md:col-span-2"
         />
 
         <div className="md:col-span-2">

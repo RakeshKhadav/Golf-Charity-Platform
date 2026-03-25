@@ -14,7 +14,7 @@ export default async function DonatePage() {
     .order("name", { ascending: true });
 
   return (
-    <div>
+    <div className="mx-auto w-[min(1120px,95%)] py-12 md:py-20">
       <section className="hero-gradient rounded-[2rem] p-8 text-white">
         <p className="font-data text-sm uppercase tracking-[0.16em] text-white/80">Independent Donation</p>
         <h1 className="font-display mt-3 text-4xl font-bold tracking-[-0.02em]">

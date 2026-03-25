@@ -28,12 +28,12 @@ export function UserRowActions({
         name="fullName"
         defaultValue={fullName ?? ""}
         placeholder="Full name"
-        className="h-[42px] rounded-2xl bg-[var(--surface-container-high)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+        className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
       />
       <select
         name="role"
         defaultValue={role}
-        className="h-[42px] rounded-2xl bg-[var(--surface-container-high)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+        className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
       >
         <option value="subscriber">Subscriber</option>
         <option value="admin">Admin</option>

@@ -29,7 +29,7 @@ export async function createDonationAction(
 
   if (!parsed.success) {
     return {
-      error: "Please fill in all fields correctly. Amount must be at least $1.",
+      error: "Please fill in all fields correctly. Amount must be at least ₹1.",
       success: "",
     };
   }

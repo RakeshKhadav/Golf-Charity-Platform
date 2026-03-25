@@ -46,7 +46,7 @@ export function CreateDrawForm() {
             id="logicMode"
             name="logicMode"
             defaultValue="random"
-            className="h-[46px] w-full rounded-2xl bg-[var(--surface-container-high)] px-4 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+            className="h-[46px] w-full rounded-2xl bg-[var(--surface-container-lowest)] px-4 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
           >
             <option value="random">Random</option>
             <option value="weighted">Weighted</option>

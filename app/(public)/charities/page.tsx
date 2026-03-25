@@ -34,7 +34,7 @@ export default async function CharitiesPage({
   const { data: charities, error } = await query;
 
   return (
-    <div>
+    <div className="mx-auto w-[min(1120px,95%)] py-12 md:py-20">
       <section className="hero-gradient rounded-[2rem] p-8 text-white">
         <p className="font-data text-sm uppercase tracking-[0.16em] text-white/80">Charity Directory</p>
         <h1 className="font-display mt-3 text-4xl font-bold tracking-[-0.02em]">Choose where your subscription gives.</h1>
@@ -78,7 +78,7 @@ export default async function CharitiesPage({
             {(charity.tags ?? []).length > 0 ? (
               <p className="mt-3 text-xs text-muted">Tags: {(charity.tags ?? []).join(", ")}</p>
             ) : null}
-            <p className="font-data mt-3 text-sm text-on-surface">Raised: ${Number(charity.total_raised).toLocaleString()}</p>
+            <p className="font-data mt-3 text-sm text-on-surface">Raised: ₹{Number(charity.total_raised).toLocaleString()}</p>
             <div className="mt-4">
               <Link href={`/charities/${charity.slug}`} className="text-sm font-semibold text-[var(--primary)]">
                 View full profile

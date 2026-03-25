@@ -4,14 +4,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { CreateDrawForm } from "@/features/admin/draws/create-draw-form";
 import { DrawRowActions } from "@/features/admin/draws/draw-row-actions";
 
-function formatMoney(value: unknown) {
-  const numberValue = typeof value === "number" ? value : Number(value);
-  if (!Number.isFinite(numberValue)) {
-    return "0.00";
-  }
-
-  return numberValue.toFixed(2);
-}
+import { formatINR } from "@/lib/utils/currency";
 
 export default async function AdminDrawsPage() {
   await requireAdmin();
@@ -56,17 +49,17 @@ export default async function AdminDrawsPage() {
 
   return (
     <section className="grid gap-4">
-      <Card>
-        <h1 className="font-display text-2xl font-bold tracking-[-0.02em]">Draws</h1>
-        <p className="mt-2 text-sm text-muted">
+      <Card variant="glass">
+        <h1 className="font-display text-2xl font-bold tracking-tight text-white">Draws</h1>
+        <p className="mt-2 text-sm text-[var(--on-surface-variant)]">
           Configure mode, simulate participant tiers, publish outcomes, and preserve rollover semantics.
         </p>
-        <div className="mt-5">
+        <div className="mt-6">
           <CreateDrawForm />
         </div>
       </Card>
 
-      <Card>
+      <Card variant="glass">
         {error ? <p className="text-sm text-[var(--error)]">{error.message}</p> : null}
 
         <div className="space-y-3">
@@ -80,16 +73,20 @@ export default async function AdminDrawsPage() {
                   {new Date(draw.draw_month).toDateString()} · {draw.status.toUpperCase()} · {draw.logic_mode.toUpperCase()}
                 </p>
 
-                <p className="mt-2 text-xs text-muted">
-                  Winner pool {formatMoney(draw.winner_pool)} · 5-M {formatMoney(draw.five_match_pool)} · 4-M {formatMoney(draw.four_match_pool)} · 3-M {formatMoney(draw.three_match_pool)}
+                <p className="mt-3 text-xs text-[var(--on-surface-variant)] flex flex-wrap gap-x-4 gap-y-1">
+                  <span>Winner pool <b className="text-white">{formatINR(draw.winner_pool)}</b></span>
+                  <span>5-M <b className="text-white">{formatINR(draw.five_match_pool)}</b></span>
+                  <span>4-M <b className="text-white">{formatINR(draw.four_match_pool)}</b></span>
+                  <span>3-M <b className="text-white">{formatINR(draw.three_match_pool)}</b></span>
                 </p>
 
-                <p className="mt-1 text-xs text-muted">
-                  Eligible {draw.eligible_count}/{draw.active_subscriber_count_snapshot} · Tier winners 5:{counts.five} 4:{counts.four} 3:{counts.three}
+                <p className="mt-1 text-xs text-[var(--on-surface-variant)]">
+                   Eligible <span className="text-white font-medium">{draw.eligible_count}/{draw.active_subscriber_count_snapshot}</span> · 
+                   Tier winners <span className="text-[var(--primary)] font-bold">5:{counts.five}</span> <span className="text-[var(--secondary)] font-bold">4:{counts.four}</span> <span className="text-[var(--tertiary)] font-bold">3:{counts.three}</span>
                 </p>
 
-                <p className="mt-1 text-xs text-muted">
-                  Rollover in {formatMoney(draw.five_match_rollover_in)} · out {formatMoney(draw.five_match_rollover_out)}
+                <p className="mt-1 text-xs text-[var(--on-surface-variant)]">
+                  Rollover in <span className="text-white">{formatINR(draw.five_match_rollover_in)}</span> · out <span className="text-white">{formatINR(draw.five_match_rollover_out)}</span>
                 </p>
 
                 <p className="mt-1 text-xs text-muted font-data">

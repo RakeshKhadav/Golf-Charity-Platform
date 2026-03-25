@@ -34,7 +34,7 @@ export function SubscriptionRowActions({
         <select
           name="status"
           defaultValue={status}
-          className="h-[42px] rounded-2xl bg-[var(--surface-container-high)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+          className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
         >
           <option value="active">Active</option>
           <option value="cancelled">Cancelled</option>

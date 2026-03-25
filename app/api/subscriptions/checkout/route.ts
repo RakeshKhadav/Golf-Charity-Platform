@@ -102,7 +102,7 @@ async function createLemonSqueezyCheckout(planType: BillingPlanType): Promise<Cr
           },
           product_options: {
             redirect_url: `${serverEnv.NEXT_PUBLIC_APP_URL}/subscribe/success`,
-            receipt_button_text: "Return to Precision Philanthropy",
+            receipt_button_text: "Return to ImpactPlay",
             receipt_link_url: `${serverEnv.NEXT_PUBLIC_APP_URL}/dashboard`,
           },
           checkout_options: {

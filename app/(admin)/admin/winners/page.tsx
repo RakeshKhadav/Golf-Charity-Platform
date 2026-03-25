@@ -5,14 +5,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { WinnerRowActions } from "@/features/admin/winners/winner-row-actions";
 import { WINNER_PROOF_BUCKET } from "@/features/winners/constants";
 
-function formatMoney(value: unknown) {
-  const numberValue = typeof value === "number" ? value : Number(value);
-  if (!Number.isFinite(numberValue)) {
-    return "0.00";
-  }
-
-  return numberValue.toFixed(2);
-}
+import { formatINR } from "@/lib/utils/currency";
 
 export default async function AdminWinnersPage({
   searchParams,
@@ -78,38 +71,44 @@ export default async function AdminWinnersPage({
   );
 
   return (
-    <section className="grid gap-4">
-      <Card>
-        <h1 className="font-display text-2xl font-bold tracking-[-0.02em]">Winners</h1>
-        <p className="mt-2 text-sm text-muted">Review verification queue and complete payout operations.</p>
+    <section className="grid gap-6">
+      <Card variant="glass">
+        <h1 className="font-display text-2xl font-bold tracking-tight text-white">Winners</h1>
+        <p className="mt-2 text-sm text-[var(--on-surface-variant)] opacity-70">Review verification queue and complete payout operations.</p>
 
-        <form className="mt-4 grid gap-2 md:grid-cols-[1fr_1fr_auto] md:items-end">
-          <select
-            name="verification"
-            defaultValue={verification ?? ""}
-            className="h-[46px] rounded-2xl bg-[var(--surface-container-high)] px-4 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
-          >
-            <option value="">All verification states</option>
-            <option value="pending">Pending</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
-          </select>
-          <select
-            name="payment"
-            defaultValue={payment ?? ""}
-            className="h-[46px] rounded-2xl bg-[var(--surface-container-high)] px-4 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
-          >
-            <option value="">All payment states</option>
-            <option value="pending">Pending</option>
-            <option value="paid">Paid</option>
-          </select>
-          <button type="submit" className="h-[46px] rounded-2xl bg-[var(--primary)] px-5 text-sm font-semibold text-white">
+        <form className="mt-6 grid gap-3 md:grid-cols-[1fr_1fr_auto] md:items-end p-4 rounded-2xl bg-white/5 border border-white/5">
+          <div className="space-y-1.5">
+            <label className="text-[10px] font-bold uppercase tracking-widest text-[var(--on-surface-variant)] ml-1">Verification</label>
+            <select
+              name="verification"
+              defaultValue={verification ?? ""}
+              className="w-full h-[46px] rounded-xl bg-white/5 border border-white/10 px-4 text-sm text-white outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-all"
+            >
+              <option value="">All states</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div className="space-y-1.5">
+            <label className="text-[10px] font-bold uppercase tracking-widest text-[var(--on-surface-variant)] ml-1">Payment</label>
+            <select
+              name="payment"
+              defaultValue={payment ?? ""}
+              className="w-full h-[46px] rounded-xl bg-white/5 border border-white/10 px-4 text-sm text-white outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-all"
+            >
+              <option value="">All states</option>
+              <option value="pending">Pending</option>
+              <option value="paid">Paid</option>
+            </select>
+          </div>
+          <button type="submit" className="h-[46px] rounded-xl bg-[var(--primary)] hover:bg-[var(--primary)]/90 px-8 text-sm font-bold text-white transition-all shadow-lg shadow-[var(--primary)]/20 active:scale-95">
             Apply
           </button>
         </form>
       </Card>
 
-      <Card>
+      <Card variant="glass">
         {error ? <p className="text-sm text-[var(--error)]">{error.message}</p> : null}
 
         <div className="space-y-3">
@@ -120,8 +119,8 @@ export default async function AdminWinnersPage({
             return (
               <div key={winner.id} className="surface-mid rounded-2xl p-3">
                 <p className="font-semibold text-on-surface">{profile?.full_name || profile?.email || winner.user_id}</p>
-                <p className="mt-1 text-xs text-muted">
-                  {draw?.title ?? winner.draw_id} · {winner.prize_tier.replace("_", " ").toUpperCase()} · Prize {formatMoney(winner.prize_amount)}
+                <p className="mt-1 text-xs text-[var(--on-surface-variant)]">
+                  {draw?.title ?? winner.draw_id} · {winner.prize_tier.replace("_", " ").toUpperCase()} · Prize <span className="text-white font-bold">{formatINR(winner.prize_amount)}</span>
                 </p>
                 <p className="mt-1 text-xs text-muted">
                   Verification {winner.verification_status.toUpperCase()} · Payment {winner.payment_status.toUpperCase()}

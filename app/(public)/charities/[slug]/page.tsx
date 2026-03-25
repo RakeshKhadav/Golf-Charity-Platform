@@ -51,13 +51,13 @@ export default async function CharityProfilePage({
   const events = normalizeEvents(charity.upcoming_events);
 
   return (
-    <div>
+    <div className="mx-auto w-[min(1120px,95%)] py-12 md:py-20">
       <section className="hero-gradient rounded-[2rem] p-8 text-white">
         <p className="font-data text-xs uppercase tracking-[0.16em] text-white/80">
           {charity.featured ? "Featured Partner" : "Partner Charity"}
         </p>
         <h1 className="font-display mt-3 text-4xl font-bold tracking-[-0.02em]">{charity.name}</h1>
-        <p className="font-data mt-3 text-sm">Total raised: ${Number(charity.total_raised).toLocaleString()}</p>
+        <p className="font-data mt-3 text-sm">Total raised: ₹{Number(charity.total_raised).toLocaleString()}</p>
         {(charity.tags ?? []).length > 0 ? <p className="mt-2 text-sm text-white/80">Tags: {(charity.tags ?? []).join(", ")}</p> : null}
       </section>
 

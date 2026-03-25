@@ -45,7 +45,7 @@ export function SignupForm({
           <select
             id="charityId"
             name="charityId"
-            className="h-[46px] w-full rounded-2xl bg-[var(--surface-container-high)] px-4 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+            className="h-[46px] w-full rounded-2xl bg-[var(--surface-container-lowest)] px-4 text-sm text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
           >
             <option value="">Choose later</option>
             {charities.map((charity) => (

@@ -14,7 +14,7 @@ export default async function SignupPage() {
 
   return (
     <section>
-      <p className="font-data text-xs uppercase tracking-[0.16em] text-muted">Join Precision Philanthropy</p>
+      <p className="font-data text-xs uppercase tracking-[0.16em] text-muted">Join ImpactPlay</p>
       <h1 className="font-display mt-3 text-3xl font-bold tracking-[-0.02em] text-on-surface">Create your account</h1>
       <p className="mt-2 text-sm text-muted">Start your subscription journey and direct your impact with every score.</p>
 
