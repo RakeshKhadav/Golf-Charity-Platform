@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils/cn";
 import {
   refreshSubscriptionFromProviderAction,
   updateSubscriptionStatusAction,
@@ -24,27 +25,23 @@ export function SubscriptionRowActions({
   userEmail: string;
   status: SubscriptionStatus;
 }) {
-  const [statusState, statusFormAction, statusPending] = useActionState(updateSubscriptionStatusAction, initialState);
   const [refreshState, refreshFormAction, refreshPending] = useActionState(refreshSubscriptionFromProviderAction, initialState);
+
+  const statusColors: Record<string, string> = {
+    active: "text-[var(--secondary)]",
+    cancelled: "text-[var(--error)]/70",
+    past_due: "text-[var(--tertiary)]",
+    expired: "text-[var(--on-surface-variant)] opacity-50",
+  };
 
   return (
     <div className="space-y-2">
-      <form action={statusFormAction} className="grid gap-2 md:grid-cols-[1fr_auto] md:items-end">
-        <input type="hidden" name="subscriptionId" value={subscriptionId} />
-        <select
-          name="status"
-          defaultValue={status}
-          className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
-        >
-          <option value="active">Active</option>
-          <option value="cancelled">Cancelled</option>
-          <option value="past_due">Past Due</option>
-          <option value="expired">Expired</option>
-        </select>
-        <Button type="submit" variant="secondary" disabled={statusPending} className="h-[42px] text-xs">
-          {statusPending ? "Saving..." : "Set"}
-        </Button>
-      </form>
+      <div className="flex items-center justify-between gap-4 h-[42px] px-4 rounded-xl bg-white/5 border border-white/10">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Status</span>
+        <span className={cn("text-xs font-bold uppercase tracking-wider", statusColors[status] || "text-white")}>
+          {status}
+        </span>
+      </div>
 
       <form action={refreshFormAction}>
         <input type="hidden" name="userId" value={userId} />
@@ -54,9 +51,7 @@ export function SubscriptionRowActions({
         </Button>
       </form>
 
-      {statusState.error ? <p className="text-xs text-[var(--error)]">{statusState.error}</p> : null}
       {refreshState.error ? <p className="text-xs text-[var(--error)]">{refreshState.error}</p> : null}
-      {statusState.success ? <p className="text-xs text-[var(--success)]">{statusState.success}</p> : null}
       {refreshState.success ? <p className="text-xs text-[var(--success)]">{refreshState.success}</p> : null}
     </div>
   );

@@ -24,19 +24,18 @@ export function UserRowActions({
   return (
     <form action={formAction} className="grid gap-2 md:grid-cols-[2fr_1fr_auto] md:items-end">
       <input type="hidden" name="userId" value={userId} />
-      <input
-        name="fullName"
-        defaultValue={fullName ?? ""}
-        placeholder="Full name"
-        className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
-      />
+      <div className="flex-1 h-[42px] flex items-center px-4 rounded-xl bg-white/5 border border-white/10 overflow-hidden">
+        <span className="text-xs text-white/50 truncate">
+          {fullName || "No name set"}
+        </span>
+      </div>
       <select
         name="role"
         defaultValue={role}
-        className="h-[42px] rounded-2xl bg-[var(--surface-container-lowest)] px-3 text-xs text-on-surface outline-none focus:ring-2 focus:ring-[var(--secondary)]"
+        className="h-[42px] rounded-xl bg-white/5 border border-white/10 px-3 text-xs text-white outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-all cursor-pointer"
       >
-        <option value="subscriber">Subscriber</option>
-        <option value="admin">Admin</option>
+        <option value="subscriber" className="bg-[#0B0F1A]" disabled={role === "admin"}>Subscriber</option>
+        <option value="admin" className="bg-[#0B0F1A]">Admin</option>
       </select>
       <Button type="submit" variant="secondary" disabled={pending} className="h-[42px] text-xs">
         {pending ? "Saving..." : "Save"}

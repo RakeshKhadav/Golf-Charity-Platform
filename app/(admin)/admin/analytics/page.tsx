@@ -42,7 +42,7 @@ export default async function AdminAnalyticsPage() {
     .filter((winner) => winner.payment_status === "paid")
     .reduce((acc, winner) => acc + Number(winner.prize_amount ?? 0), 0);
 
-  const totalRaisedTracked = (charities ?? []).reduce((acc, charity) => acc + Number(charity.total_raised ?? 0), 0);
+  const totalRaisedTracked = 0; // Set to 0 as exact amount is unknown as per requirement
 
   return (
     <section className="grid gap-6 md:grid-cols-3">
