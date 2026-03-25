@@ -44,7 +44,7 @@ export default async function SubscribePage({
 
         <Card>
           <p className="font-display text-2xl font-bold tracking-[-0.02em]">Monthly</p>
-          <p className="font-data mt-3 text-3xl">₹299</p>
+          <p className="font-data mt-3 text-3xl">₹99</p>
           <p className="mt-2 text-sm text-muted">Flexible monthly billing with full platform access.</p>
           <div className="mt-5">
             <LemonSqueezySubscribeButton planType="monthly" label="Choose Monthly" />
@@ -53,7 +53,7 @@ export default async function SubscribePage({
 
         <Card>
           <p className="font-display text-2xl font-bold tracking-[-0.02em]">Yearly</p>
-          <p className="font-data mt-3 text-3xl">₹2999</p>
+          <p className="font-data mt-3 text-3xl">₹999</p>
           <p className="mt-2 text-sm text-muted">Save with annual billing and uninterrupted membership.</p>
           <div className="mt-5">
             <LemonSqueezySubscribeButton planType="yearly" label="Choose Yearly" />
